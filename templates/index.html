@@ -4,11 +4,20 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Greeting</title>
+    <title>Library</title>
 </head>
 
 <body>
-{{books}}
+	<h1>Books to Read</h1>
+	<form>
+		<fieldset>
+			<legend>Books</legend>
+				{% for book in books %}
+				{{book}}: <input type="checkbox">
+				<br>
+				{% endfor %}
+		</fieldset>
+	</form>
 </body>
 
 </html>

@@ -9,7 +9,7 @@ with open('data/data.json', 'r') as data_file:
 books = []
 for book in json.loads(data):
 	books.append(book['name'])
-print(books)
+ 
 @app.route("/get")
 def get():
     return render_template('index.html', books=books)
