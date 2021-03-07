@@ -1,7 +1,11 @@
 class Book:
 
-	def __init__(self, name):
+	def __init__(self, name, read):
 		self.name = name
+		self.read = read
 
-	def get_name(self):
-		return self.name
+	def set_read(self):
+		if self.read:
+			self.read = 0
+		else:
+			self.read = 1
