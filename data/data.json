@@ -1,8 +1,10 @@
 [
   {
-    "name": "Dante's Inferno"
+    "name": "Dante's Inferno",
+    "read": 0
   },
   {
-    "name": "A Tale of Two Cities"
+    "name": "A Tale of Two Cities",
+    "read": 1
   }
 ]

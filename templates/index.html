@@ -5,18 +5,38 @@
 <head>
     <meta charset="utf-8">
     <title>Library</title>
+<style>
+	table, th, td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		text-align: center;
+	}
+</style>
 </head>
 
 <body>
 	<h1>Books to Read</h1>
 	<form>
-		<fieldset>
-			<legend>Books</legend>
-				{% for book in books %}
-				{{book}}: <input type="checkbox">
-				<br>
-				{% endfor %}
-		</fieldset>
+			<div id="checklist">
+				<table>
+					<tr>
+						<th> Book </th>
+						<th> Completed </th>
+					</tr>
+					{% for book in books %}
+					<tr>
+						<td id="checklist_item">{{book[0]}}</td>
+						<td>
+							{% if book[1] == 1 %}
+								<input checked type="checkbox">
+							{% else %}
+								<input type="checkbox">
+						{% endif %}
+						</td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>	
 	</form>
 </body>
 

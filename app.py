@@ -8,7 +8,7 @@ with open('data/data.json', 'r') as data_file:
 
 books = []
 for book in json.loads(data):
-	books.append(book['name'])
+	books.append((book['name'], book['read']))
  
 @app.route("/get")
 def get():
