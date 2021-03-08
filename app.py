@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
-import json
-from flask import Flask, render_template, request
+from library import Library
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
-with open('data/data.json', 'r') as data_file:
-	data = data_file.read()
-
-books = []
-for book in json.loads(data):
-	books.append(book['name'])
+library = Library()
  
-@app.route("/get")
+@app.route("/")
 def get():
-    return render_template('index.html', books=books)
+    return render_template("index.html", books=library.get_books())
+
+@app.route("/read")
+def set_read():
+	library.update_book_read(request.args.get("name"))
+	return redirect(url_for('get'))
 
 if __name__ == "__main__":
     app.run()
