@@ -28,9 +28,9 @@
 						<td id="checklist_item">{{book.name}}</td>
 						<td>
 							{% if book.read == 1 %}
-								<input checked type="checkbox">
+								<input checked type="checkbox" value="{{book.name}}" onchange=send_event(this.value)>
 							{% else %}
-								<input type="checkbox">
+								<input type="checkbox" value="{{book.name}}" onchange=send_event(this.value)>
 						{% endif %}
 						</td>
 					</tr>
@@ -39,5 +39,11 @@
 			</div>	
 	</form>
 </body>
+
+<script>
+	function send_event(book_name) {
+		window.location.replace(window.location.href + 'read?name=' + book_name);
+	}
+</script>
 
 </html>
