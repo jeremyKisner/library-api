@@ -43,6 +43,7 @@ class Library:
 				library_book.set_read()
 		Library.add(library_books)
 
+	@staticmethod
 	def add_book(request):
 		library_book = Book(request, 0)
 		library_books = Library.get_books()

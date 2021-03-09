@@ -1,7 +1,7 @@
 [
     {
         "name": "Dante's Inferno",
-        "read": 1
+        "read": 0
     },
     {
         "name": "A Tale of Two Cities",
@@ -9,6 +9,10 @@
     },
     {
         "name": "Giving Tree",
-        "read": 1
+        "read": 0
+    },
+    {
+        "name": "Fahrenheit 451",
+        "read": 0
     }
 ]

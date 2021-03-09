@@ -12,7 +12,12 @@ def get():
 @app.route("/read")
 def set_read():
 	library.update_book_read(request.args.get("name"))
-	return redirect(url_for('get'))
+	return redirect(url_for("get"))
+
+@app.route("/add")
+def add():
+	library.add_book(request.args.get("name"))
+	return redirect(url_for("get"))
 
 if __name__ == "__main__":
     app.run()
