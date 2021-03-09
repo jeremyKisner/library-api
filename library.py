@@ -11,6 +11,14 @@ class Library:
 		return data
 
 	@staticmethod
+	def add(books):
+		temp = []
+		for book in books:
+			temp.append(book.__dict__)
+		with open('data/data.json', 'w') as data_file:
+			json.dump(temp, data_file, indent=4)
+
+	@staticmethod
 	def get_books():
 		library_books = []
 		data = Library.get()
@@ -28,13 +36,16 @@ class Library:
 
 	@staticmethod
 	def update_book_read(request):
-		books = Library.get_books()
-		for library_book in books:
+		library_books = Library.get_books()
+		for library_book in library_books:
 			if library_book.get_name().upper() == request.upper():
 				print(f'Updating Book read: {request}')
 				library_book.set_read()
-		temp = []
-		for book in books:
-			temp.append(book.__dict__)
-		with open('data/data.json', 'w') as data_file:
-			json.dump(temp, data_file, indent=4)
+		Library.add(library_books)
+
+	def add_book(request):
+		library_book = Book(request, 0)
+		library_books = Library.get_books()
+		library_books.append(library_book)
+		print(library_books)
+		Library.add(library_books)
