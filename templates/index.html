@@ -1,9 +1,9 @@
 <!doctype html>
 
 <html lang="en">
-<meta http-equiv="refresh" content="10">
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="refresh" content="10">
     <title>Library</title>
 <style>
 	table, th, td {
@@ -13,10 +13,9 @@
 	}
 </style>
 </head>
-
 <body>
 	<h1>Books to Read</h1>
-	<form>
+	
 			<div id="checklist">
 				<table>
 					<tr>
@@ -27,23 +26,19 @@
 					<tr>
 						<td id="checklist_item">{{book.name}}</td>
 						<td>
+							<form method="post" action="{{url_for('set_read')}}">
 							{% if book.read == 1 %}
-								<input checked type="checkbox" value="{{book.name}}" onchange=send_event(this.value)>
+								<input checked type="checkbox" name="book_name" value="{{book.name}}" onchange=submit()>
+								<input checked type="hidden" name="book_name" value="{{book.name}}" onchange=submit()>
 							{% else %}
-								<input type="checkbox" value="{{book.name}}" onchange=send_event(this.value)>
+								<input type="checkbox" name="book_name" value="{{book.name}}" onchange=submit()>
+								<input type="hidden" name="book_name" value="{{book.name}}" onchange=submit()>
 						{% endif %}
+							</form>
 						</td>
 					</tr>
 					{% endfor %}
 				</table>
 			</div>	
-	</form>
 </body>
-
-<script>
-	function send_event(book_name) {
-		window.location.replace(window.location.href + 'read?name=' + book_name);
-	}
-</script>
-
 </html>
