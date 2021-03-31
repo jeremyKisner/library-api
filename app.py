@@ -10,14 +10,14 @@ def get():
     return render_template('index.html', books=library.get_books())
 
 @app.route('/read', methods=['POST'])
-def set_read():
+def post_read():
 	print(f'Updating {request.form["book_name"]}')
 	library.update_book_read(request.form['book_name'])
 	return redirect(url_for('get'))
 
-@app.route('/add')
+@app.route('/add', methods=['POST'])
 def add():
-	library.add_book(request.args.get('name'))
+	#library.add_book(request.args.get('name'))
 	return redirect(url_for('get'))
 
 if __name__ == '__main__':

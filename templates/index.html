@@ -5,13 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="refresh" content="10">
     <title>Library</title>
-<style>
-	table, th, td {
-		border: 1px solid black;
-		border-collapse: collapse;
-		text-align: center;
-	}
-</style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 </head>
 <body>
 	<h1>Books to Read</h1>
@@ -26,7 +20,7 @@
 					<tr>
 						<td id="checklist_item">{{book.name}}</td>
 						<td>
-							<form method="post" action="{{url_for('set_read')}}">
+							<form method="post" action="{{url_for('post_read')}}">
 							{% if book.read == 1 %}
 								<input checked type="checkbox" name="book_name" value="{{book.name}}" onchange=submit()>
 								<input checked type="hidden" name="book_name" value="{{book.name}}" onchange=submit()>
