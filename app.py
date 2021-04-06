@@ -15,7 +15,7 @@ def post_read():
 	library.update_book_read(request.form['book_name'])
 	return redirect(url_for('get'))
 
-@app.route('/add', methods=['POST'])
+@app.route('/add')
 def add():
 	#library.add_book(request.args.get('name'))
 	return redirect(url_for('get'))

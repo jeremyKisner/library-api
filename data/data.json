@@ -1,11 +1,11 @@
 [
     {
         "name": "Dante's Inferno",
-        "read": 0
+        "read": 1
     },
     {
         "name": "A Tale of Two Cities",
-        "read": 1
+        "read": 0
     },
     {
         "name": "Giving Tree",
