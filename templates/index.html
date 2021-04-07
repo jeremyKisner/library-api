@@ -1,44 +1,27 @@
-<!doctype html>
-
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="refresh" content="30">
-    <title>Library</title>
-    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
-</head>
-<body>
-	<div id="nav_bar">
-		<ul>
-			<li><a href="{{url_for('get')}}">Home</a></li>
-			<li><a href="{{url_for('add')}}">Add Book</a></li>
-		</ul> 
-	</div>
-	<h1>Books to Read</h1>
-	
-			<div id="checklist">
-				<table>
-					<tr>
-						<th> Book </th>
-						<th> Completed </th>
-					</tr>
-					{% for book in books %}
-					<tr>
-						<td id="checklist_item">{{book.name}}</td>
-						<td>
-							<form method="post" action="{{url_for('post_read')}}">
-							{% if book.read == 1 %}
-								<input checked type="checkbox" name="book_name" value="{{book.name}}" onchange=submit()>
-								<input checked type="hidden" name="book_name" value="{{book.name}}" onchange=submit()>
-							{% else %}
-								<input type="checkbox" name="book_name" value="{{book.name}}" onchange=submit()>
-								<input type="hidden" name="book_name" value="{{book.name}}" onchange=submit()>
-						{% endif %}
-							</form>
-						</td>
-					</tr>
-					{% endfor %}
-				</table>
-			</div>	
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+<div id="checklist">
+	<table>
+		<tr>
+			<th> Book </th>
+			<th> Completed </th>
+		</tr>
+	{% for book in books %}
+		<tr>
+			<td id="checklist_item">{{book.name}}</td>
+		<td>
+		<form method="post" action="{{url_for('post_read')}}">
+		{% if book.read == 1 %}
+			<input checked type="checkbox" name="book_name" value="{{book.name}}" onchange=submit()>
+			<input checked type="hidden" name="book_name" value="{{book.name}}" onchange=submit()>
+		{% else %}
+			<input type="checkbox" name="book_name" value="{{book.name}}" onchange=submit()>
+			<input type="hidden" name="book_name" value="{{book.name}}" onchange=submit()>
+		{% endif %}
+		</form>
+		</td>
+		</tr>
+	{% endfor %}
+	</table>
+</div>
+{% endblock %}	
