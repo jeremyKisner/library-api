@@ -7,7 +7,7 @@ class Library extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      books : null
+      books : []
     };
   }
 
@@ -34,7 +34,15 @@ class Library extends React.Component {
     return (
       <div>
           <h1>Your Library</h1>
-          <p>{JSON.stringify(this.state.books)}</p>
+          <ul>
+            {this.state.books.map((data) => (
+              <li key={data.name}> 
+                <p>Name: {data.name}</p>
+                <p>Author: {data.author}</p>
+                <p>Published: {data.published}</p>
+              </li>
+            ))}
+        </ul>
       </div>
     );
   }

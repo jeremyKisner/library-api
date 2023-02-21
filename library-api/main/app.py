@@ -11,7 +11,8 @@ library = Library()
 
 @app.route('/books', methods=['GET'])
 def get_books():
-	return json.dumps(library.get_inventory(), indent=2)
+    print("retrieving inventory")
+    return json.dumps(library.get_inventory(), indent=2)
 
 
 @app.route('/books/add', methods=["POST"])
