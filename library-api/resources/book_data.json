@@ -1,0 +1,20 @@
+[
+    {
+        "name": "Dante's Inferno",
+        "author": "Alighieri, Dante",
+        "type": "fiction",
+        "isbn-13": 9781490309781,
+        "isbn-10": 1490309780,
+        "published" : 2013,
+        "publisher": "CreateSpace Independent Publishing Platform"
+    },
+    {
+        "name": "A Tale of Two Cities by Charles Dickens",
+        "author": "Dickens, Charles",
+        "type": "fiction",
+        "isbn-13": 9781657599086,
+        "isbn-10": 1657599086,
+        "published" : 2020,
+        "publisher": "Independently published"
+    }
+]
