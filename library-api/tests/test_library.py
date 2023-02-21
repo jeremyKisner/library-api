@@ -111,3 +111,21 @@ class TestLibrary(unittest.TestCase):
         result = library.get_book(wanted_book)
         self.assertIsNotNone(result)
         self.assertGreater(len(result), 0)
+
+
+    def test_delete_book(self):
+        library = t.Library()
+        new_book = {
+            "name": "New Testable Book",
+            "author": "test",
+            "type": "non-fiction",
+            "isbn-13": 1,
+            "isbn-10": 1,
+            "published": 2023,
+            "publisher": "test"
+        }
+        original_len = len(library.get_inventory())
+        library.add_inventory(new_book)
+        self.assertEqual(original_len + 1, len(library.get_inventory()))
+        library.delete_book({"isbn-13": 1})
+        self.assertEqual(original_len, len(library.get_inventory()))
