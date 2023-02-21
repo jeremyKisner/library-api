@@ -11,20 +11,26 @@ library = Library()
 
 @app.route('/books', methods=['GET'])
 def get_books():
-	return json.dumps(library.load_inventory())
+	return json.dumps(library.get_inventory(), indent=2)
 
 
-# @app.route('/read', methods=['POST'])
-# def post_read():
-# 	print(f'Updating {request.form["book_name"]}')
-# 	library.update_book_read(request.form['book_name'])
-# 	return "Book Read"
+@app.route('/books/get', methods=['GET'])
+def get_book_by_name():
+    response = None
+    if request.is_json:
+        response = library.get_book(request.json)
+    if not response:
+        return "No books found matchin criteria"
+    return json.dumps(response, indent=2)
 
 
-# @app.route('/add')
-# def add():
-# 	library.add_book(request.args.get('name'))
-# 	return "Book Added"
+@app.route('/books/add', methods=["POST"])
+def add():
+    if request.is_json and library.add_inventory(request.json):
+        return "Book Added!"
+    else:
+        print(f"failed to add book for payload {request.data}")
+        return "Failed to add book, check request!"
 
 
 if __name__ == '__main__':
