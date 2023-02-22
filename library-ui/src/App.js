@@ -3,6 +3,17 @@ import './App.css';
 import React from 'react'
 import ReactDOM from 'react' 
 
+const Book = (data) => {
+  console.log('here data ', data.data.name)
+  return (
+    <div key={data.data.name}>
+      <h2>{data.data.name}</h2>
+      <h3>{data.data.author}</h3>
+      <h4>{data.data.published}</h4>
+    </div>
+  )
+}
+
 class Library extends React.Component {
   constructor(props) {
     super(props)
@@ -34,15 +45,9 @@ class Library extends React.Component {
     return (
       <div>
           <h1>Your Library</h1>
-          <ul>
-            {this.state.books.map((data) => (
-              <li key={data.name}> 
-                <p>Name: {data.name}</p>
-                <p>Author: {data.author}</p>
-                <p>Published: {data.published}</p>
-              </li>
-            ))}
-        </ul>
+          {this.state.books.map((data, index) => (
+            <Book key={index} data={data} />
+          ))}
       </div>
     );
   }
