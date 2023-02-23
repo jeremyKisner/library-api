@@ -3,13 +3,12 @@ import './App.css';
 import React from 'react'
 import ReactDOM from 'react' 
 
-const Book = (data) => {
-  console.log('here data ', data.data.name)
+const Book = (data, index) => {
   return (
-    <div key={data.data.name}>
-      <h2>{data.data.name}</h2>
-      <h3>{data.data.author}</h3>
-      <h4>{data.data.published}</h4>
+    <div className="book" key={index}>
+      {data.data.name} <br/>
+      {data.data.author} <br/>
+      {data.data.published} <br/>
     </div>
   )
 }
@@ -44,9 +43,8 @@ class Library extends React.Component {
   render() {
     return (
       <div>
-          <h1>Your Library</h1>
           {this.state.books.map((data, index) => (
-            <Book key={index} data={data} />
+            <Book key={index} data={data} index={index} />
           ))}
       </div>
     );
@@ -56,6 +54,7 @@ class Library extends React.Component {
 function App() {
   return (
     <div className="App">
+      <h1>Your Library</h1>
       <Library />
     </div>
   );
