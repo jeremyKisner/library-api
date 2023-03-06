@@ -1,3 +1,11 @@
+# Library App
+Just a playground to practice front and back end skills.
+
+## TODO
+1. Add ability to add book from UI
+1. Add a cart for checking out books
+
+
 # Library API
 Start the API server:
 ``` bash

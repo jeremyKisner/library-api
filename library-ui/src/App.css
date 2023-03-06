@@ -36,3 +36,38 @@ h1 {
     transform: rotate(360deg);
   }
 }
+
+.nav {
+  background-color: #999;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav a {
+  color: inherit;
+
+}
+
+.nav li:hover {
+  background-color: #777;
+}
+
+.nav li:active {
+  background-color: #333;
+}
+
+.library-app{
+  font-size: 2rem;
+}
