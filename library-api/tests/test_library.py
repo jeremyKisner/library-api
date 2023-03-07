@@ -28,7 +28,7 @@ class TestLibrary(unittest.TestCase):
             "name": "New Testable Book",
             "author": "test",
             "type": "non-fiction",
-            "isbn-13": 1,
+            "isbn_13": 1,
             "isbn-10": 1,
             "published": 2023,
             "publisher": "test"
@@ -40,7 +40,7 @@ class TestLibrary(unittest.TestCase):
             "name": "New Testable Book II",
             "author": "test",
             "type": "non-fiction",
-            "isbn-13": 2,
+            "isbn_13": 2,
             "isbn-10": 2,
             "published": 2023,
             "publisher": "test"
@@ -56,7 +56,7 @@ class TestLibrary(unittest.TestCase):
             "name": "New Testable Book",
             "author": "test",
             "type": "non-fiction",
-            "isbn-13": 1,
+            "isbn_13": 1,
             "isbn-10": 1,
             "published": 2023,
             "publisher": "test"
@@ -65,7 +65,7 @@ class TestLibrary(unittest.TestCase):
             "name": "New Testable Book II",
             "author": "test",
             "type": "non-fiction",
-            "isbn-13": 2,
+            "isbn_13": 2,
             "isbn-10": 2,
             "published": 2023,
             "publisher": "test"
@@ -89,7 +89,7 @@ class TestLibrary(unittest.TestCase):
             "name": "New Testable Book",
             "author": "test",
             "type": "non-fiction",
-            "isbn-13": 1,
+            "isbn_13": 1,
             "isbn-10": 1,
             "published": 2023,
             "publisher": "test"
@@ -98,7 +98,7 @@ class TestLibrary(unittest.TestCase):
             "name": "New Testable Book II",
             "author": "test",
             "type": "non-fiction",
-            "isbn-13": 2,
+            "isbn_13": 2,
             "isbn-10": 2,
             "published": 2023,
             "publisher": "test"
@@ -119,7 +119,7 @@ class TestLibrary(unittest.TestCase):
             "name": "New Testable Book",
             "author": "test",
             "type": "non-fiction",
-            "isbn-13": 1,
+            "isbn_13": 1,
             "isbn-10": 1,
             "published": 2023,
             "publisher": "test"
@@ -127,5 +127,5 @@ class TestLibrary(unittest.TestCase):
         original_len = len(library.get_inventory())
         library.add_inventory(new_book)
         self.assertEqual(original_len + 1, len(library.get_inventory()))
-        library.delete_book({"isbn-13": 1})
+        library.delete_book({"isbn_13": 1})
         self.assertEqual(original_len, len(library.get_inventory()))

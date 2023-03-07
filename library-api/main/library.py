@@ -35,7 +35,7 @@ class Library:
 			incoming_books = [incoming_books]
 		if type(incoming_books) == list:
 			for book in incoming_books:
-				if book["isbn-13"] not in self.get_inventory_by_identifier("isbn-13"):
+				if book["isbn_13"] not in self.get_inventory_by_identifier("isbn_13"):
 					self.inventory.append(book)
 			return True
 		return False
@@ -58,7 +58,7 @@ class Library:
 		if incoming_book_to_delete:
 			books = self.get_inventory()
 			for i in range(len(books)):
-				if str(incoming_book_to_delete["isbn-13"]) == str(books[i]["isbn-13"]):
+				if str(incoming_book_to_delete["isbn_13"]) == str(books[i]["isbn_13"]):
 					books.pop(i)
 					is_deleted = True
 					self.inventory = books
