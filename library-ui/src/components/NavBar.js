@@ -5,7 +5,7 @@ export default function NavBar() {
         <a  href="/" className="library-app">Library Home</a>
         <ul>
             <li>
-                <a href="/addBook">Add</a>
+                <a href="/addBook">Add Book</a>
             </li>
         </ul>
     </nav>
