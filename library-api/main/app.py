@@ -41,7 +41,8 @@ def delete_book():
     if request.is_json and library.delete_book(request.json):
         return "book deleted"
     else:
-        print(f"failed to delete book, either book not found or bad request: {request.data}")
+        print(
+            f"failed to delete book, either book not found or bad request: {request.data}")
         return "failed to delete book, either book not found or bad request"
 
 
