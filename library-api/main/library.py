@@ -1,7 +1,8 @@
 import json
-from configparser import ConfigParser
 
 import psycopg2
+
+from main.database.config import config
 
 
 class Library:
@@ -11,21 +12,10 @@ class Library:
 
     def __load_inventory__(self):
         print("loading library inventory")
-        parser = ConfigParser()
-        parser.read("./resources/database.ini")
-        db = {}
-        if parser.has_section("postgresql"):
-            params = parser.items("postgresql")
-            for param in params:
-                db[param[0]] = param[1]
-        else:
-            raise Exception("had issue reading file")
-        conn = psycopg2.connect(**db)
+        params = config()
+        conn = psycopg2.connect(**params)
         cur = conn.cursor()
-        # execute a statement
-        print('PostgreSQL database version:')
         cur.execute('SELECT version()')
-        # display the PostgreSQL database server version
         db_version = cur.fetchone()
         print(db_version)
         cur.close()
@@ -33,11 +23,6 @@ class Library:
             data = json.load(data_file)
         print(f"library inventory loaded, found {len(data)} books")
         return data
-
-    def __backup_inventory__(self):
-        print('making backup of library data')
-        with open('data/data.json', 'w') as data_file:
-            json.dump(self.inventory, data_file, indent=4)
 
     def get_inventory_by_identifier(self, identifier):
         return [book[identifier] for book in self.get_inventory()]
