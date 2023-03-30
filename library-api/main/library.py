@@ -2,15 +2,18 @@ import json
 
 import psycopg2
 
-from main.database.config import config
+from database.config import config
+from database.create_table import create_tables
 
 
 class Library:
 
     def __init__(self):
-        self.inventory = self.__load_inventory__()
+        create_tables()
+        self.__load_books()
+        self.inventory = self.__load_inventory()
 
-    def __load_inventory__(self):
+    def __load_books(self):
         print("loading library inventory")
         params = config()
         conn = psycopg2.connect(**params)
@@ -19,6 +22,8 @@ class Library:
         db_version = cur.fetchone()
         print(db_version)
         cur.close()
+
+    def __load_inventory(self):
         with open('./resources/book_data.json', 'r') as data_file:
             data = json.load(data_file)
         print(f"library inventory loaded, found {len(data)} books")

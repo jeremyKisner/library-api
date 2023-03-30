@@ -12,7 +12,7 @@ class TestLibrary(unittest.TestCase):
 
     def test_library_load_inventory(self):
         library = t.Library()
-        self.assertIsNotNone(library.__load_inventory__())
+        self.assertIsNotNone(library.inventory)
 
 
     def test_get_inventory(self):

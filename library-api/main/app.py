@@ -6,7 +6,6 @@ from flask import Flask, request
 
 from library import Library
 
-
 app = Flask(__name__)
 CORS(app)
 library = Library()
