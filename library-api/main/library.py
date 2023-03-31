@@ -1,6 +1,7 @@
 import json
 
 import psycopg2
+from psycopg2.extras import execute_values
 
 from database.config import config
 from database.create_table import create_tables
@@ -9,14 +10,14 @@ from database.create_table import create_tables
 class Library:
 
     def __init__(self):
-        create_tables()
+        self.config = config()
+        create_tables(self.config)
         self.__load_books()
         self.inventory = self.__load_inventory()
 
     def __load_books(self):
         print("loading library inventory")
-        params = config()
-        conn = psycopg2.connect(**params)
+        conn = psycopg2.connect(**self.config)
         cur = conn.cursor()
         cur.execute('SELECT version()')
         db_version = cur.fetchone()
@@ -40,11 +41,29 @@ class Library:
         if type(incoming_books) == dict:
             incoming_books = [incoming_books]
         if type(incoming_books) == list:
+            self.add_books(incoming_books)
             for book in incoming_books:
                 if book["isbn_13"] not in self.get_inventory_by_identifier("isbn_13"):
                     self.inventory.append(book)
             return True
         return False
+
+    def add_books(self, incoming_books:list):
+        sql = """INSERT INTO library(name,author,type,isbn_13,isbn_10,published,publisher,copies) 
+                VALUES """
+        values = [tuple(i.values()) for i in incoming_books]
+        
+        try:
+            conn = psycopg2.connect(**self.config)
+            cur = conn.cursor()
+            args = ','.join(cur.mogrify("(%s, %s, %s, %s, %s, %s, %s, %s)", i).decode('utf-8')
+                for i in values)
+            cur.execute(sql + args)
+            conn.commit()
+        except Exception as e:
+            print(f"something bad happened {e}")
+        finally:
+            cur.close()
 
     def get_book(self, incoming_book) -> list:
         print(f'searching for library book: {incoming_book}')
