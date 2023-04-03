@@ -1,28 +1,32 @@
 import json
 
 import psycopg2
-from psycopg2.extras import execute_values
+import psycopg2.extras
 
 from database.config import config
 from database.create_table import create_tables
-
+from book import Book
 
 class Library:
 
     def __init__(self):
         self.config = config()
         create_tables(self.config)
-        self.__load_books()
+        self.books = self.__load_books()
         self.inventory = self.__load_inventory()
 
     def __load_books(self):
+        books = []
         print("loading library inventory")
         conn = psycopg2.connect(**self.config)
-        cur = conn.cursor()
-        cur.execute('SELECT version()')
-        db_version = cur.fetchone()
-        print(db_version)
+        cur = conn.cursor(cursor_factory = psycopg2.extras.DictCursor)
+        cur.execute('SELECT * FROM library;')
+        results = cur.fetchall()
+        print(results)
         cur.close()
+        for result in results:
+            books.append(Book(result))
+        return books
 
     def __load_inventory(self):
         with open('./resources/book_data.json', 'r') as data_file:
@@ -48,11 +52,10 @@ class Library:
             return True
         return False
 
-    def add_books(self, incoming_books:list):
+    def add_books(self, incoming_books: list) -> bool:
         sql = """INSERT INTO library(name,author,type,isbn_13,isbn_10,published,publisher,copies) 
                 VALUES """
         values = [tuple(i.values()) for i in incoming_books]
-        
         try:
             conn = psycopg2.connect(**self.config)
             cur = conn.cursor()

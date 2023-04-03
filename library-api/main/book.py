@@ -1,17 +1,14 @@
 class Book:
 
-    def __init__(self, name, read):
-        self.name = name
-        self.read = read
+    def __init__(self, record):
+        self.name = record["name"]
+        self.author = record["author"]
+        self.type = record["type"]
+        self.isbn_13 = record["isbn_13"]
+        self.isbn_10 = record["isbn_10"]
+        self.published = record["published"]
+        self.publisher = record["publisher"]
+        self.copies = record["copies"]
 
     def get_name(self):
         return self.name
-
-    def get_read(self):
-        return self.read
-
-    def set_read(self):
-        if self.get_read():
-            self.read = 0
-        else:
-            self.read = 1
