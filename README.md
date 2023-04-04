@@ -22,7 +22,10 @@ To run tests for the API:
 ``` bash
     python3 -m pytest .\tests\
 ```
-
+To run linting for the API:
+``` bash
+    python3 -m pylint .\main\
+```
 
 ## Library UI
 ### TODO
