@@ -1,5 +1,3 @@
-import json
-
 import psycopg2
 import psycopg2.extras
 
@@ -31,10 +29,11 @@ class Library:
 
     def add_books(self, incoming_books: list) -> bool:
         print(f"received request to add book {incoming_books}")
-        if type(incoming_books) == dict:
+        if isinstance(incoming_books, dict):
             incoming_books = [incoming_books]
-        if type(incoming_books) == list:
-            sql = """INSERT INTO library(name,author,type,isbn_13,isbn_10,published,publisher,copies) 
+        if isinstance(incoming_books, list):
+            sql = """INSERT INTO library(name,author,type,
+                        isbn_13,isbn_10,published,publisher,copies)
                     VALUES """
             values = [tuple(i.values()) for i in incoming_books]
             try:
@@ -48,6 +47,7 @@ class Library:
                 return True
             except Exception as e:
                 print(f"something bad happened {e}")
+                raise e
             finally:
                 cur.close()
         return False

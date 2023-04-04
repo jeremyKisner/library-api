@@ -1,3 +1,7 @@
+""" 
+Generates the backend Postgres tables
+that stores objects, like books
+"""
 import psycopg2
 
 def create_tables(params):
@@ -26,7 +30,7 @@ def create_tables(params):
         cur.close()
         conn.commit()
     except (Exception, psycopg2.DatabaseError) as error:
-        print(error)
+        raise error
     finally:
         if conn is not None:
             conn.close()

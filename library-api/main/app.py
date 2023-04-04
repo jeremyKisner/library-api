@@ -31,19 +31,16 @@ def get_book_by_key():
 def add():
     if request.is_json and library.add_books(request.json):
         return "book added"
-    else:
-        print(f"failed to add book for payload {request.data}")
-        return "failed to add book, check request"
+    print(f"failed to add book for payload {request.data}")
+    return "failed to add book, check request"
 
 
 @app.route('/books/delete', methods=['POST'])
 def delete_book():
     if request.is_json and library.delete_book(request.json):
         return "book deleted"
-    else:
-        print(
-            f"failed to delete book, either book not found or bad request: {request.data}")
-        return "failed to delete book, either book not found or bad request"
+    print(f"failed to delete book, either book not found or bad request: {request.data}")
+    return "failed to delete book, either book not found or bad request"
 
 
 if __name__ == '__main__':
