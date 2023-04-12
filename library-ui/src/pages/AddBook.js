@@ -6,11 +6,13 @@ export default function AddBook() {
     const handleChange = (event) => {
       const name = event.target.name;
       const value = event.target.value;
+      console.log('values: ', value)
       setInputs(values => ({...values, [name]: value}))
     }
   
     const handleSubmit = (event) => {
       event.preventDefault();
+      console.log("here");
       console.log(inputs);
       fetch('http://127.0.0.1:5000/books/add', {
       method: 'POST', 

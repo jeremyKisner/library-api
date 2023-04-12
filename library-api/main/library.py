@@ -4,6 +4,8 @@ import psycopg2.extras
 from database.config import config
 from database.create_table import create_tables
 
+from book import Book
+
 class Library:
 
     def __init__(self):
@@ -32,17 +34,15 @@ class Library:
         if isinstance(incoming_books, dict):
             incoming_books = [incoming_books]
         if isinstance(incoming_books, list):
-            sql = """INSERT INTO library(name,author,type,
-                        isbn_13,isbn_10,published,publisher,copies)
-                    VALUES """
-            values = [tuple(i.values()) for i in incoming_books]
             try:
                 conn = psycopg2.connect(**self.config)
                 cur = conn.cursor()
-                args = ','.join(cur.mogrify("(%s, %s, %s, %s, %s, %s, %s, %s)", i).decode('utf-8')
-                    for i in values)
-                cur.execute(sql + args)
-                conn.commit()
+                for book in incoming_books:
+                    book = Book(book)
+                    sql = """INSERT INTO library(name,author,type,isbn_13,isbn_10,published,publisher,copies) 
+                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"""
+                    cur.execute(sql, book.get())
+                    conn.commit()
                 self.books = self.__load_books()
                 return True
             except Exception as e:

@@ -13,8 +13,8 @@ def create_tables(params):
             name VARCHAR(1000) NOT NULL,
             author VARCHAR(1000) NOT NULL,
             type VARCHAR(50) NOT NULL,
-            isbn_13 INT,
-            isbn_10 INT,
+            isbn_13 BIGINT,
+            isbn_10 BIGINT,
             published INT,
             publisher VARCHAR(200),
             copies INT
