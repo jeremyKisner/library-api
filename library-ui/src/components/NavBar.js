@@ -7,6 +7,9 @@ export default function NavBar() {
             <li>
                 <a href="/addBook">Add Book</a>
             </li>
+            <li>
+                <a href="/deleteBook">Delete Book</a>
+            </li>
         </ul>
     </nav>
 }

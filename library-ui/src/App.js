@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react'
 import Navbar from './components/NavBar';
 import AddBook from './pages/AddBook';
+import DeleteBook from './pages/DeleteBook';
 import Home from './pages/Home';
 
 
@@ -13,6 +14,9 @@ function App() {
       break
     case "/addBook":
       component = <AddBook />
+      break
+    case "/deleteBook":
+      component = <DeleteBook />
       break
     default:
       component = <Home />

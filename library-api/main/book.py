@@ -46,7 +46,7 @@ class Book:
         self.author = value
 
     def get_type(self) -> str:
-        return self.type
+        return getattr(self, "type", "")
 
     def set_type(self, value):
         self.type = value

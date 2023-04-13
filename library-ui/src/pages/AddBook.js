@@ -1,27 +1,27 @@
 import React, { useState } from "react";
 
+
 export default function AddBook() {
     const [inputs, setInputs] = useState({});
 
     const handleChange = (event) => {
       const name = event.target.name;
       const value = event.target.value;
-      console.log('values: ', value)
+      console.log('values: ', value);
       setInputs(values => ({...values, [name]: value}))
     }
   
     const handleSubmit = (event) => {
       event.preventDefault();
-      console.log("here");
       console.log(inputs);
       fetch('http://127.0.0.1:5000/books/add', {
-      method: 'POST', 
-      mode: 'cors',
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(inputs)
-    })
+        method: 'POST', 
+        mode: 'cors',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(inputs)
+      })
     }
 
     return (
@@ -87,7 +87,11 @@ export default function AddBook() {
                 onChange={handleChange}
             >
                 <option 
-                    value="fiction" 
+                    value=""
+                    onChange={handleChange}>
+                </option>
+                <option 
+                    value="fiction"
                     onChange={handleChange}>Fiction
                 </option>
                 <option 
@@ -96,6 +100,15 @@ export default function AddBook() {
                 </option>
             </select>
             <br/><br/>
+          </label>
+          <label>Copies:
+          <input
+            type="text" 
+            name="copies" 
+            value={inputs.copies || ""} 
+            onChange={handleChange}
+          />
+          <br/>
           </label>
           <input type="submit" />
       </form>
