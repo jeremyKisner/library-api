@@ -3,7 +3,7 @@ import Book from './Book'
 
 class Library extends React.Component {
     constructor(props) {
-      super(props)
+      super(props);
       this.state = {
         books : []
       };
@@ -16,11 +16,11 @@ class Library extends React.Component {
     BookList() {
       var req = new XMLHttpRequest()
       req.addEventListener("load", () => {
-          var data = req.responseText
-          data = JSON.parse(data)
+          var data = req.responseText;
+          data = JSON.parse(data);
           this.setState({userdata: data}, () => {
-              console.log("DATA: ", data)
-              this.setState({books: data})
+              console.log("DATA: ", data);
+              this.setState({books: data});
           })
           
       })

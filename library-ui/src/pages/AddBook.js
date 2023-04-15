@@ -21,7 +21,12 @@ export default function AddBook() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(inputs)
-      })
+      }).then((res) => {
+        console.log('res ', res);
+        if (res != null && res["status"] === 200) {
+          alert("Success!");
+        }
+      });
     }
 
     return (
