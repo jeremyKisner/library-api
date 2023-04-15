@@ -1,10 +1,12 @@
 import Library from '../components/Library'
 
-export default function Home() {
+const Home = (props) => {
     return (
         <div>
-            <h1>Your Library</h1>
+            <h1>Library</h1>
             <Library />
         </div>
     );
 }
+
+export default Home;

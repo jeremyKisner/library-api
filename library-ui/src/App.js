@@ -6,7 +6,7 @@ import DeleteBook from './pages/DeleteBook';
 import Home from './pages/Home';
 
 
-function App() {
+const App = () => {
   let component
   switch (window.location.pathname) {
     case "/":

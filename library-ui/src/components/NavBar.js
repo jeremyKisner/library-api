@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function NavBar() {
+const NavBar = () => {
     return <nav className="nav">
         <a  href="/" className="library-app">Home</a>
         <ul>
@@ -13,3 +13,5 @@ export default function NavBar() {
         </ul>
     </nav>
 }
+
+export default NavBar;
