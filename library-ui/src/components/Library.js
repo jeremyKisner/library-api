@@ -1,23 +1,10 @@
 import Book from './Book'
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 const Library = (props) => {
-  const [books, setBooks] = useState([]);
-  useEffect(() => {
-    var req = new XMLHttpRequest();
-    req.addEventListener("load", () => {
-      var data = req.responseText;
-      data = JSON.parse(data);
-      console.log("data: ", data);
-      setBooks(data);
-    });
-    req.open("GET", "http://127.0.0.1:5000/books");
-    req.send();
-  }, []);
-  
   return (
     <div>
-      {books.map((data, index) => (
+      {props.books.map((data, index) => (
         <Book key={index} data={data} index={index} />
       ))}
     </div>
