@@ -3,10 +3,10 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
+import { useState } from "react";
 
 
 const sendCheckout = async (book) => {
-  console.log("sending request")
   await fetch(`http://127.0.0.1:5000/books/checkout`, {
     method: `POST`,
     headers: { "Content-Type": `application/json` },
@@ -15,14 +15,20 @@ const sendCheckout = async (book) => {
 };
 
 const Book = (book) => {
-  onclick = () => {
+  const [numOfCopies, setCopies] = useState(book.data.copies);
+  const onclick = () => {
     sendCheckout(book.data.library_id);
+    var target = numOfCopies - 1;
+    if (target < 0) {
+      target = 0;
+    }
+    setCopies(target);
   };
   return (
     <Card
       sx={{
-        height: 150,
-        width: 150,
+        height: 250,
+        width: 250,
         backgroundColor: (theme) =>
           theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
       }}
@@ -35,7 +41,7 @@ const Book = (book) => {
           {book.data.author}
         </Typography>
         <Typography>
-          Copies Left: {book.data.copies}
+          Copies Left: {numOfCopies}
         </Typography>
         <CardActions>
           <Button size="small" onClick={onclick}>Checkout</Button>
