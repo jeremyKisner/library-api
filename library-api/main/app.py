@@ -21,7 +21,7 @@ def get_books():
 def get_book_by_key():
     response = None
     if request.is_json:
-        response = library.get_book(request.json)
+        response = library.get_matching_books(request.json)
     if not response:
         return "no books found matching criteria"
     return json.dumps(response, indent=2)
@@ -32,7 +32,15 @@ def add():
     if request.is_json and library.add_books(request.json):
         return "book added"
     print(f"failed to add book for payload {request.data}")
-    return "failed to add book, check request"
+    return "failed to add book, check request!"
+
+
+@app.route('/books/checkout', methods=["POST"])
+def check_out_book():
+    if request.is_json and library.check_out(request.json):
+        return "book checked out"
+    print(f"failed to check out book for payload {request.data}")
+    return "failed to check out book, check request!"
 
 
 @app.route('/books/delete', methods=['POST'])

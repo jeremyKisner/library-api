@@ -52,16 +52,26 @@ class Library:
                 cur.close()
         return False
 
-    def get_book(self, incoming_book) -> list:
+    def get_matching_books(self, incoming_book) -> list:
         print(f'searching for library book: {incoming_book}')
         matched_books = []
         if incoming_book:
             for search_term in incoming_book:
                 for inventory_item in self.get_books():
-                    if incoming_book[search_term].lower() in inventory_item[search_term].lower():
+                    if str(incoming_book[search_term]).lower() in str(inventory_item[search_term]).lower():
                         matched_books.append(inventory_item)
         print(f"found '{len(matched_books)}' total books matching criteria")
         return matched_books
+    
+    def get_book_by_id(self, incoming_book) -> dict:
+        print(f'searching for library book: {incoming_book}')
+        matched_book = {}
+        if incoming_book:
+            for search_term in incoming_book:
+                for inventory_item in self.get_books():
+                    if str(incoming_book[search_term]).lower() == str(inventory_item[search_term]).lower():
+                        matched_book = inventory_item
+        return matched_book
 
     def delete_book(self, incoming_book_to_delete: dict) -> bool:
         is_deleted = False
@@ -87,3 +97,22 @@ class Library:
                     self.books = self.__load_books()
                     break
         return is_deleted
+
+    def check_out(self, incoming_book):
+        is_checked_out = False
+        print(f"received request to checkout book {incoming_book}")
+        _book = self.get_book_by_id({"library_id": incoming_book})
+        if _book and _book["copies"] > 0:
+            is_checked_out = True
+        if is_checked_out:
+            print("updating record")
+            conn = psycopg2.connect(**self.config)
+            cur = conn.cursor()
+            sql = """ UPDATE library SET copies=%s WHERE library_id=%s """
+            cur.execute(sql,  (_book["copies"] - 1, incoming_book))
+            rows_updated = cur.rowcount
+            conn.commit()
+            cur.close()
+            print(f'rows updated {rows_updated}')
+            self.books = self.__load_books()
+        return _book
