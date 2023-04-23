@@ -1,43 +1,21 @@
-import React from 'react'
 import Book from './Book'
+import React from 'react';
+import Grid from '@mui/material/Grid';
 
-class Library extends React.Component {
-    constructor(props) {
-      super(props)
-      this.state = {
-        books : []
-      };
-    }
-  
-    componentDidMount() {
-      this.BookList()
-    }
-  
-    BookList() {
-      var req = new XMLHttpRequest()
-      req.addEventListener("load", () => {
-          var data = req.responseText
-          data = JSON.parse(data)
-          this.setState({userdata: data}, () => {
-              console.log("DATA: ", data)
-              this.setState({books: data})
-          })
-          
-      })
-      req.open("GET", "http://127.0.0.1:5000/books")
-      req.send()
-    }
-  
-
-    render() {
-      return (
-        <div>
-            {this.state.books.map((data, index) => (
-              <Book key={index} data={data} index={index} />
-            ))}
-        </div>
-      );
-    }
-  }
+const Library = (props) => {
+  return (
+    <Grid sx={{ flexGrow: 1 }} container spacing={2}>
+      <Grid item xs={12}>
+        <Grid container justifyContent="center" spacing={8}>
+          {props.books.map((value, index) => (
+            <Grid key={value} item>
+              <Book key={index} data={value} index={index} />
+            </Grid>
+          ))}
+        </Grid>
+      </Grid>
+    </Grid>
+  );
+};
 
 export default Library;
