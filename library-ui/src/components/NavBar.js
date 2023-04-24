@@ -10,6 +10,9 @@ const NavBar = () => {
             <li>
                 <a href="/deleteBook">Delete Book</a>
             </li>
+            <li>
+                <a href="/cart">Cart</a>
+            </li>
         </ul>
     </nav>
 }
