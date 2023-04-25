@@ -1,7 +1,7 @@
 import Library from '../components/Library'
 import React, { useState, useEffect } from 'react';
 
-const Home = () => {
+const Home = (props) => {
     const [books, setBooks] = useState([]);
 
     useEffect(() => {
@@ -19,7 +19,7 @@ const Home = () => {
     return (
         <>
             <h1>Library</h1>
-            <Library books={books}/>
+            <Library books={books} cart={props.cart} addToCart={props.addToCart}/>
         </>
     );
 }

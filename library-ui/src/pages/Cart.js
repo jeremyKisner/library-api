@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,8 +7,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 const Cart = (props) => {
-    const [cartItems, updateCart] = useState(props);
-
+    console.log('cart props ', props)
     return (
         <>
             <TableContainer component={Paper}>
@@ -21,7 +19,7 @@ const Cart = (props) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {cartItems.map((row) => (
+                        {props.cart.map((row) => (
                             <TableRow
                                 key={row.name}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -29,7 +27,6 @@ const Cart = (props) => {
                                 <TableCell component="th" scope="row">
                                     {row.name}
                                 </TableCell>
-                                <TableCell align="right">Data</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
