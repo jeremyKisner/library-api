@@ -28,10 +28,8 @@ To run linting for the API:
 ```
 
 ## Library UI
-### TODO
-1. Add a cart for checking out books
 
-Now, change directory into the library-ui:
+Change directory into the library-ui:
 ``` bash
 cd library-ui
 ```

@@ -1,9 +1,9 @@
+import { useState } from "react";
 import { Typography } from "@mui/material";
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import { useState } from "react";
 
 
 const sendCheckout = async (book) => {
@@ -14,16 +14,25 @@ const sendCheckout = async (book) => {
   });
 };
 
+const getCopies = (numOfCopies) => {
+  var target = numOfCopies - 1;
+  if (target < 0) {
+    target = 0;
+  }
+  return target;
+}
+
 const Book = (book) => {
+  console.log('book ', book)
   const [numOfCopies, setCopies] = useState(book.data.copies);
+
   const onclick = () => {
     sendCheckout(book.data.library_id);
-    var target = numOfCopies - 1;
-    if (target < 0) {
-      target = 0;
-    }
+    var target = getCopies(numOfCopies);
     setCopies(target);
+    book.addToCart(book.data);
   };
+
   return (
     <Card
       sx={{
@@ -50,6 +59,5 @@ const Book = (book) => {
     </Card>
   )
 }
-
 
 export default Book;
