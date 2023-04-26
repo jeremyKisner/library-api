@@ -18,7 +18,6 @@ const Home = (props) => {
 
     return (
         <>
-            <h1>Library</h1>
             <Library books={books} cart={props.cart} addToCart={props.addToCart}/>
         </>
     );

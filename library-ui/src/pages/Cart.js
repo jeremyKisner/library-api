@@ -7,15 +7,14 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
 const Cart = (props) => {
-    console.log('cart props ', props)
+    console.log('cart props ', props);
     return (
         <>
             <TableContainer component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell></TableCell>
-                            <TableCell align="right">test</TableCell>
+                            <TableCell>Title</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

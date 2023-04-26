@@ -5,6 +5,11 @@ import AddBook from './pages/AddBook';
 import Cart from './pages/Cart';
 import DeleteBook from './pages/DeleteBook';
 import Home from './pages/Home';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
 
 
 const App = () => {
@@ -16,28 +21,17 @@ const App = () => {
     console.log("cart: ", cart);
   };
 
-  let component
-  switch (window.location.pathname) {
-    case "/":
-      component = <Home cart={cart} addToCart={addToCart} />
-      break
-    case "/addBook":
-      component = <AddBook />
-      break
-    case "/deleteBook":
-      component = <DeleteBook />
-      break
-      case "/cart":
-        component = <Cart cart={cart} />
-        break
-    default:
-      component = <Home cart={cart} addToCart={addToCart} />
-  }
   return (
-    <>
-      <Navbar />
-      {component}
-    </>
+    <Router>
+        <Navbar/>
+        <Routes>
+          <Route exact path="/" element={<Home cart={cart} addToCart={addToCart} />}/>
+          <Route exact path="/addBook" element={<AddBook />}/>
+          <Route exact path="/deleteBook" element={<DeleteBook />}/>
+          <Route exact path="/cart" element={<Cart cart={cart} />}/>
+          <Route path="*" element={<Home cart={cart} addToCart={addToCart} />}/>
+        </Routes>
+    </Router>
   )
 }
 
