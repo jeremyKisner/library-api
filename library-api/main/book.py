@@ -40,7 +40,7 @@ class Book:
         self.name = value
 
     def get_author(self) -> str:
-        return self.author
+        return getattr(self, "author", "")
 
     def set_author(self, value):
         self.author = value
@@ -58,19 +58,19 @@ class Book:
         self.isbn_13 = value
 
     def get_isbn_10(self) -> int:
-        return int(self.isbn_10)
+        return int(getattr(self, "isbn_10", ""))
 
     def set_isbn_10(self, value):
         self.isbn_10 = value
 
     def get_published(self) -> str:
-        return self.published
+        return getattr(self, "published", "")
 
     def set_published(self, value):
         self.published = value
 
     def get_publisher(self) -> str:
-        return self.publisher
+        return getattr(self, "publisher", "")
 
     def set_publisher(self, value):
         self.publisher = value
