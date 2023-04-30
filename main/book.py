@@ -4,6 +4,8 @@ class Book:
         self.set_variables(record)
 
     def set_variables(self, record):
+        if not record:
+            raise ValueError("Expected record for book!")
         if "name" in record:
             self.set_name(record["name"])
         if "author" in record:
