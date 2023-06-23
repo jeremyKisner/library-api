@@ -1,10 +1,8 @@
-#!/usr/bin/env python3
 import json
-
 from flask_cors import CORS
 from flask import Flask, request
-
 from library import Library
+
 
 app = Flask(__name__)
 CORS(app)

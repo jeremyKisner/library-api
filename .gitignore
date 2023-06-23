@@ -1,2 +1,6 @@
 *.pyc
 database.ini
+.dev
+.vscode
+.pytest_cache
+__pycache__
