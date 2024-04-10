@@ -1,5 +1,5 @@
 # Library API
-A Flask RESTful API that contains a postgres back-end for storage.
+A Flask API that contains a postgres back-end for storage.
 
 ## Setting Up the Environment
 Create a Virtual Environment
